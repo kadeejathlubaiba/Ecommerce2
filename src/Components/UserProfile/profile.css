@@ -1,0 +1,32 @@
+.ant-card{
+    max-width: 60%;
+    max-height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: #f6f5f5;
+  }
+
+  .ant-card-head-title{
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+   
+  }
+
+  .details{
+    font-size: medium;
+    text-align: center;
+  }
+
+  .change{
+    text-align: center;
+   margin: auto;
+  }
+
+  #butn{
+    text-align: center;
+   margin: auto;
+    
+  }

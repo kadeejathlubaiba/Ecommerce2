@@ -5,21 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Home from './Pages/Home';
-import Login from './components/auth/Login';
-import Banner from './Pages/Banner';
-import Category from './Pages/Categories/Category';
-import Addcategory from './Pages/Categories/Addcategory';
-import Products from './Pages/Products';
-import Orders from './Pages/orders/Orders';
-import Aboutus from './Pages/Aboutus';
-import Adduser from './Pages/user/Adduser';
-import User from './Pages/user/User';
-import Customer from './Pages/customer/Customer';
-import Addcustomer from './Pages/customer/Addcustomer';
+import Home from './Pages/home';
+import Login from './Components/Auth/login';
+import Banner from './Pages/banner';
+import Category from './Pages/category';
+import Addcategory from './Components/Category/addCategory';
+import Products from './Pages/products';
+import Orders from './Pages/orders';
+import Aboutus from './Pages/aboutUs';
+import Adduser from './Components/User/addUser';
+import User from './Pages/user';
+import Customer from './Pages/customer';
+import Addcustomer from './Components/Customer/addCustomer';
 import { Provider } from 'react-redux';
-import store from './srore';
-import Profile from './components/Userprofile/Profile'
+import store from './store';
+import Profile from './Components/UserProfile/profile';
+import UpdateProfile from './Components/UserProfile/updateProfile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -42,6 +43,7 @@ root.render(
       <Route path="addcustomer" element={<Addcustomer />} />
       <Route path="addcategory" element={<Addcategory />} />
       <Route path="profile" element={<Profile />} />
+      <Route path="updateprofile" element={<UpdateProfile />} />
     </Routes>
   </BrowserRouter>
       </Provider>
