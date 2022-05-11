@@ -18,7 +18,8 @@ return (
         <div class="recent-sales box">
           <div class="title">Customers</div>
           <div class="sales-details">
-          <Button type="primary" onClick={() => navigate("/addcustomer")}>Add Customers</Button>
+          <Button type="primary" onClick={() => navigate("/addcustomer", {
+                  state: { name: "Add Customer", customerId: "" },})}>Add Customers</Button>
           <div>
            <CustomerTable />
           </div>

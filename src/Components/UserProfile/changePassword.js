@@ -7,6 +7,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { message } from "antd";
 import { Modal, Button } from 'antd';
+import { Input } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 
 export default function ChangePassword() {
@@ -107,7 +109,7 @@ export default function ChangePassword() {
                             <div className="input-containers">
                               <label>Current Password</label>
                               <br />
-                              <input
+                              <Input.Password
                                 type="password"
                                 name="oldPassword"
                                 onBlur={handleBlur}
@@ -117,6 +119,8 @@ export default function ChangePassword() {
                                   formik.touched.oldPassword &&
                                   Boolean(formik.errors.oldPassword)
                                 }
+                                placeholder="input password"
+                                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                               />
                               <br />
                               <span className="error" style={{ color: "red" }}>
@@ -128,7 +132,7 @@ export default function ChangePassword() {
                             <div className="input-containers">
                               <label>New Password</label>
                               <br />
-                              <input
+                              <Input.Password
                                 type="password"
                                 name="passwords"
                                 onBlur={handleBlur}
@@ -138,6 +142,8 @@ export default function ChangePassword() {
                                   formik.touched.passwords &&
                                   Boolean(formik.errors.passwords)
                                 }
+                                placeholder="input password"
+                                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                               />
                               <br />
                               <span className="error" style={{ color: "red" }}>
@@ -148,7 +154,7 @@ export default function ChangePassword() {
                             <div className="input-containers">
                               <label>Confirm Password</label>
                               <br />
-                              <input
+                              <Input.Password
                                 type="password"
                                 name="newPassword"
                                 onBlur={handleBlur}
@@ -158,6 +164,8 @@ export default function ChangePassword() {
                                   formik.touched.newPassword &&
                                   Boolean(formik.errors.newPassword)
                                 }
+                                placeholder="input password"
+                                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                               />
                               <br />
                               <span className="error" style={{ color: "red" }}>

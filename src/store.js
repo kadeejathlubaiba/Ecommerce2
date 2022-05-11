@@ -4,5 +4,5 @@ import reducer from './Redux/Reducers'
 const initialState = {};
 const store = configureStore({reducer:reducer},initialState);
 
-console.log(store.getState());
+store.subscribe(()=>console.log(store.getState()));
 export default store;

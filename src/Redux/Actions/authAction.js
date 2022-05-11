@@ -23,6 +23,7 @@ try {
     console.log(error);
     dispatch( {
       type: AUTH_FAILURE,
+      error:error
   })
 }
 }

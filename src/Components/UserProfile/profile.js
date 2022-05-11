@@ -10,8 +10,10 @@ import ChangePassword from "./changePassword";
 import {useDispatch , useSelector} from 'react-redux'
 
 function Profile() {
-  const adminData = useSelector((state) => state.auth&&state.auth.auth&&state.auth.auth.data)
+  //useSelector Hook takes a selector function as an argument. The selector function will receive the state of your store as an argument that you will use to return the field you want
+  const adminData = useSelector((state) => state.auth&&state.auth.auth)
   console.log(adminData)
+  console.log(adminData.userName)
   const dispatch =useDispatch();
     useEffect(() => {
       dispatch(GetAdminDetails());

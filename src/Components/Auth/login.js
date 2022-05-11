@@ -31,12 +31,11 @@ function Login() {
   
     onSubmit: (values) => {
       setIsSubmitting(true);
-      console.log(JSON.stringify(values, null, 2));
+      //console.log(JSON.stringify(values, null, 2));
       axios.post('http://localhost/ecommerce-backend/api/login1.php', 
         JSON.stringify(values))
       .then(function (response) {
         console.warn(response);
-
         if(response.data.jwt && response.status === 200){
           localStorage.setItem('token', response.data.jwt);
           localStorage.setItem('userId', response.data.data.userId);
@@ -44,7 +43,8 @@ function Login() {
           localStorage.setItem('email',response.data.data.email);
           localStorage.setItem('gender',response.data.data.gender);
           localStorage.setItem('phoneNumber',response.data.data.phoneNumber);
-          console.log(response.data.data.userName);
+          localStorage.setItem("isAuthenticated", true);
+          //console.log(response.data.data.userName);
           navigate('/home');
         }
         else{

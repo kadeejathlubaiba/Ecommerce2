@@ -19,7 +19,7 @@ const onReset = () => {
 };
   let navigate = useNavigate();
   const [form] = Form.useForm();
-  let Details = store.getState().auth.auth.data;
+  let Details = store.getState().auth.auth;
 
   const dispatch =useDispatch();
   useEffect(() => {
@@ -43,7 +43,12 @@ const onReset = () => {
     PostWithAuthToken('users/update_users.php',data)
       .then((res)=>{
         console.log(res);
-      <Alert message="success" description="Profile updates successfully" type="success" showIcon closable />
+        localStorage.setItem("userName",JSON.stringify(values.userName));
+
+        console.log(values);
+        var item= JSON.parse(localStorage.getItem('userName'));
+        
+      <Alert message="Profile updated successfully" description="Profile updates successfully" type="success" showIcon closable />
       } );
   };
   const onFinishFailed = () => {

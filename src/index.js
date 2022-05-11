@@ -21,6 +21,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Profile from './Components/UserProfile/profile';
 import UpdateProfile from './Components/UserProfile/updateProfile';
+import ProtectedRoute from './Route/protected';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -30,20 +32,49 @@ root.render(
     <Routes>
       <Route index element={<App />} />
       <Route path="/" element={<Login />} />
-      <Route path="home" element={<Home />} />
-      <Route path="banner" element={<Banner />} />
-      <Route path="dashboard" element={<Home />} />
-      <Route path="category" element={<Category />} />
-      <Route path="product" element={<Products />} />
-      <Route path="order" element={<Orders />} />
-      <Route path="aboutus" element={<Aboutus />} />
-      <Route path="adduser" element={<Adduser />} />
-      <Route path="user" element={<User/>} />
-      <Route path="customer" element={<Customer/>} />
-      <Route path="addcustomer" element={<Addcustomer />} />
-      <Route path="addcategory" element={<Addcategory />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="updateprofile" element={<UpdateProfile />} />
+      <Route path="/home" element={<ProtectedRoute />}>
+      <Route exact path="/home" element={<Home />} />
+      </Route>
+      <Route path="/banner" element={<ProtectedRoute />}>
+      <Route exact path="/banner" element={<Banner />} />
+      </Route>
+      <Route path="/dashboard" element={<ProtectedRoute />}>
+      <Route exact path="/dashboard" element={<Home />} />
+      </Route>
+      <Route path="/category" element={<ProtectedRoute />}>
+      <Route exact path="/category" element={<Category />} />
+      </Route>
+      <Route path="/product" element={<ProtectedRoute />}>
+      <Route exact path="/product" element={<Products />} />
+      </Route>
+      <Route path="/order" element={<ProtectedRoute />}>
+      <Route exact path="/order" element={<Orders />} />
+      </Route>
+      <Route path="/aboutus" element={<ProtectedRoute />}>
+      <Route exact path="/aboutus" element={<Aboutus />} />
+      </Route>
+      <Route path="/adduser" element={<ProtectedRoute />}>
+      <Route exact path="/adduser" element={<Adduser />} />
+      </Route>
+      <Route path="/user" element={<ProtectedRoute />}>
+      <Route exact path="/user" element={<User />} />
+      </Route>
+      <Route path="/customer" element={<ProtectedRoute />}>
+      <Route exact path="/customer" element={<Customer />} />
+      </Route>
+      <Route path="/addcustomer" element={<ProtectedRoute />}>
+      <Route exact path="/addcustomer" element={<Addcustomer />} />
+      </Route>
+      <Route path="/addcategory" element={<ProtectedRoute />}>
+      <Route exact path="/addcategory" element={<Addcategory />} />
+      </Route>
+      <Route path="/profile" element={<ProtectedRoute />}>
+      <Route exact path="/profile" element={<Profile />} />
+      </Route>
+      {/* <Route path="profile" element={<Profile />} /> */}
+      <Route path="/updateprofile" element={<ProtectedRoute />}>
+      <Route exact path="/updateprofile" element={<UpdateProfile />} />
+      </Route>
     </Routes>
   </BrowserRouter>
       </Provider>
