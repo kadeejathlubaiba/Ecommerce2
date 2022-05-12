@@ -14,8 +14,6 @@ function Addcustomer() {
     const mov = () => {
         navigate('/customer');
     }
-//   console.log(location.state.name);
-//   console.log(location.state.customerId);
   useEffect(() => {
     fetch(`http://localhost/ecommerce-backend/api/customer/get_customerid.php`,
     {body:JSON.stringify({customerId:location.state.customerId}),
@@ -35,7 +33,6 @@ function Addcustomer() {
               address:result[0].address,
               gender:result[0].gender
               //profilePicture:result.profilePicture
-
             });
           },
           (error) => {
@@ -112,21 +109,9 @@ function Addcustomer() {
     const onFinishFailed = () => {
         message.error("Submit failed!");
     };
-
-
     const onReset = () => {
         form.resetFields();
     };
-
-  const validateMessages = {
-    required: "${label} is required!",
-    types: {
-      email: "${label} is not a valid email!",
-    },
-    number: {
-      range: "${label} must be between ${min} and ${max}",
-    },
-  };
     return (
         <div className="row">
         <div className="col">
@@ -141,7 +126,6 @@ function Addcustomer() {
                   <div class="sales-details">
                   <Card title={location.state.name}>
                     <Form
-                        validateMessages={validateMessages}
                         form={form}
                         layout="vertical"
                         onFinish={onFinish}
@@ -248,10 +232,9 @@ function Addcustomer() {
                                 <Button type="primary" htmlType="submit">
                                     Submit
                                 </Button>
-                                <br /><br />
                                 <Button htmlType="button" onClick={onReset}>
                                     Reset
-                                </Button><br />
+                                </Button>
                                 <Button type="primary" htmlType="button" onClick={mov}>
                                     Back
                                 </Button>

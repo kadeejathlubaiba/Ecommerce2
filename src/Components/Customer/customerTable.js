@@ -25,8 +25,6 @@ const CustomerTable =()=>{
       );
   }, [refresh]);
   const deleteCustomer = (record) => {
-    console.log(record);
-    console.log(record.customerId);
     console.log(JSON.stringify({ customerId: record.customerId }))
     axios.delete("http://localhost/ecommerce-backend/api/customer/delete_customer.php", {
       data: { customerId: record.customerId },
@@ -80,11 +78,16 @@ const CustomerTable =()=>{
         editable: true,
       },
       {
-        title: "Profile Picture",
-        dataIndex: "profilePicture",
-         key: "profilePicture",
-         editable: true,
-      },
+
+        title: "Profile Picture",    
+        dataIndex: "profilePicture", 
+        key: "profilePicture",
+        editable: true,
+        width:"10%",
+        render:profilePicture=>(
+        <img  width={110} alt={profilePicture} src={(`../../Assets/Images/${profilePicture}`)}/>),
+        
+    },
     {
       title: "Action",
       dataIndex: "customerId",
