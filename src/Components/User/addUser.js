@@ -90,7 +90,7 @@ function Adduser() {
                     <Input placeholder="Enter email" />
                 </Form.Item>
                 <Form.Item
-                    name="password"
+                    name="passwords"
                     label="password"
                     rules={[
                         {
@@ -117,7 +117,6 @@ function Adduser() {
                             required: true,
                             min: 10,
                             max: 12,
-
                         },
                       ]}
                 >
