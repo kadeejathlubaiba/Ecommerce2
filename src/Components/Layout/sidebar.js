@@ -1,54 +1,49 @@
 import { useNavigate } from "react-router-dom";
-import React from 'react';
-import './style.css';
+import React from "react";
+import "./style.css";
 
-function Sidebar(){
-const handleClick = (e) => {
-  localStorage.clear();
+function Sidebar() {
+  const handleClick = (e) => {
+    localStorage.clear();
     navigate("/");
-}
-const navigate = useNavigate();
-const DASHBOARD = (event) => {
-            //Prevent page reload
-            event.preventDefault();
-                navigate('/dashboard');
- }
- const ORDERS = (event) => {
+  };
+  const navigate = useNavigate();
+  const DASHBOARD = (event) => {
     //Prevent page reload
     event.preventDefault();
-        navigate('/order');
-}
-const CUSTOMERS = (event) => {
-    //Prevent page reload
+    navigate("/dashboard");
+  };
+  const ORDERS = (event) => {
     event.preventDefault();
-        navigate('/customer');
-}
-const USER = (event) => {
-    //Prevent page reload
+    navigate("/order");
+  };
+  const CUSTOMERS = (event) => {
     event.preventDefault();
-        navigate('/user');
-}
-const CATEGORIES = (event) => {
-    //Prevent page reload
+    navigate("/customer");
+  };
+  const USER = (event) => {
     event.preventDefault();
-        navigate('/category');
-}
-const PRODUCTS = (event) => {
-    //Prevent page reload
+    navigate("/user");
+  };
+  const CATEGORIES = (event) => {
     event.preventDefault();
-        navigate('/product');
-}
-// const ABOUTUS = (event) => {
-//     //Prevent page reload
-//     event.preventDefault();
-//         navigate('/aboutus');
-   
-// }
-return (
-  <div class="sidebar">
-    <div class="logo-details">
-      <span class="logo_name">Ecommerce</span>
-    </div>
+    navigate("/category");
+  };
+  const PRODUCTS = (event) => {
+    event.preventDefault();
+    navigate("/product");
+  };
+  // const ABOUTUS = (event) => {
+  //     //Prevent page reload
+  //     event.preventDefault();
+  //         navigate('/aboutus');
+
+  // }
+  return (
+    <div class="sidebar">
+      <div class="logo-details">
+        <span class="logo_name">Ecommerce</span>
+      </div>
       <ul class="nav-links">
         <li>
           <a onClick={DASHBOARD} class="active">
@@ -61,30 +56,30 @@ return (
           </a>
         </li>
         <li>
-        <a onClick={USER} class="active">
+          <a onClick={USER} class="active">
             {/* <i class='bx bx-list-ul' ></i> */}
             <span class="links_name">MANAGE USER</span>
           </a>
         </li>
         <li>
-        <a onClick={ORDERS} class="active">
+          <a onClick={ORDERS} class="active">
             {/* <i class='bx bx-pie-chart-alt-2' ></i> */}
             <span class="links_name">ORDERS</span>
           </a>
         </li>
         <li>
-        <a onClick={CATEGORIES} class="active">
+          <a onClick={CATEGORIES} class="active">
             {/* <i class='bx bx-coin-stack' ></i> */}
             <span class="links_name">CATEGORIES</span>
           </a>
         </li>
         <li>
-        <a onClick={PRODUCTS} class="active">
+          <a onClick={PRODUCTS} class="active">
             {/* <i class='bx bx-book-alt' ></i> */}
             <span class="links_name">PRODUCTS</span>
           </a>
         </li>
-       
+
         {/* <li>
         <a onClick={BANNERS} class="active">
             
@@ -103,18 +98,15 @@ return (
             <span class="links_name">ENQUERIES</span>
           </a>
         </li> */}
-       <li>
-       <a onClick={handleClick} class="active">
+        <li>
+          <a onClick={handleClick} class="active">
             {/* <i class='bx bx-log-out'></i> */}
             <span class="links_name">LOGOUT</span>
           </a>
-       </li>
+        </li>
       </ul>
-  </div>
-
-
-);
-
+    </div>
+  );
 }
 
 export default Sidebar;

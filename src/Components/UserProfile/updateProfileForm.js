@@ -40,7 +40,7 @@ function UpdateProfileForm() {
       console.log(res);
       localStorage.setItem("userName", JSON.stringify(values.userName));
       var item = JSON.parse(localStorage.getItem("userName"));
-      navigate("/profile");  
+      navigate("/profile");
       <Alert
         message="Profile updated successfully"
         description="Profile updated successfully"

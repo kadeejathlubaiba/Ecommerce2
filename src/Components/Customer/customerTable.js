@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Table,Popconfirm, Form, Typography} from "antd";
+import { Table, Popconfirm, Form, Typography } from "antd";
 import { EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import "../../Components/Layout/style.css";
 import axios from "axios";
 
-const CustomerTable =()=>{
+const CustomerTable = () => {
   let navigate = useNavigate();
   const [form] = Form.useForm();
   const [data, setData] = useState(null);
@@ -25,18 +25,19 @@ const CustomerTable =()=>{
       );
   }, [refresh]);
   const deleteCustomer = (record) => {
-    console.log(JSON.stringify({ customerId: record.customerId }))
-    axios.delete("http://localhost/ecommerce-backend/api/customer/delete_customer.php", {
-      data: { customerId: record.customerId },
-      })
-      .then((response) => {
-      console.log(
-      response.data + "Deleted user Id =" + record.customerId
-      );
-      setRefresh(refresh + 1);
-      console.log(refresh);
-      }
+    console.log(JSON.stringify({ customerId: record.customerId }));
+    axios
+      .delete(
+        "http://localhost/ecommerce-backend/api/customer/delete_customer.php",
+        {
+          data: { customerId: record.customerId },
+        }
       )
+      .then((response) => {
+        console.log(response.data + "Deleted user Id =" + record.customerId);
+        setRefresh(refresh + 1);
+        console.log(refresh);
+      });
   };
   const columns = [
     {
@@ -44,7 +45,7 @@ const CustomerTable =()=>{
       dataIndex: "customerId",
       width: "5%",
       editable: true,
-      defaultSortOrder: 'descend',
+      defaultSortOrder: "descend",
       sorter: (a, b) => a.customerId - b.customerId,
     },
     {
@@ -54,39 +55,42 @@ const CustomerTable =()=>{
       editable: true,
     },
     {
-        title: "Email",
-        dataIndex: "email",
-        width: "15%",
-        editable: true,
-      },
-      {
-        title: "Phone Number",
-        dataIndex: "phoneNumber",
-        width: "15%",
-        editable: true,
-      },
-      {
-        title: "Gender",
-        dataIndex: "gender",
-        width: "15%",
-        editable: true,
-      },
-      {
-        title: "Address",
-        dataIndex: "address",
-        width: "15%",
-        editable: true,
-      },
-      {
-
-        title: "Profile Picture",    
-        dataIndex: "profilePicture", 
-        key: "profilePicture",
-        editable: true,
-        width:"10%",
-        render:profilePicture=>(
-        <img  width={110} alt={profilePicture} src={(`../../Assets/Images/${profilePicture}`)}/>),
-        
+      title: "Email",
+      dataIndex: "email",
+      width: "15%",
+      editable: true,
+    },
+    {
+      title: "Phone Number",
+      dataIndex: "phoneNumber",
+      width: "15%",
+      editable: true,
+    },
+    {
+      title: "Gender",
+      dataIndex: "gender",
+      width: "15%",
+      editable: true,
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      width: "15%",
+      editable: true,
+    },
+    {
+      title: "Profile Picture",
+      dataIndex: "profilePicture",
+      key: "profilePicture",
+      editable: true,
+      width: "10%",
+      render: (profilePicture) => (
+        <img
+          width={110}
+          alt={profilePicture}
+          src={`../../Assets/Images/${profilePicture}`}
+        />
+      ),
     },
     {
       title: "Action",
@@ -94,11 +98,14 @@ const CustomerTable =()=>{
       width: "10%",
       render: (_, record) => {
         return (
-         <span>
+          <span>
             <Typography.Link
               onClick={() =>
                 navigate("/addcustomer", {
-                  state: { name: "Update Customer", customerId: record.customerId },
+                  state: {
+                    name: "Update Customer",
+                    customerId: record.customerId,
+                  },
                 })
               }
             >
@@ -112,7 +119,7 @@ const CustomerTable =()=>{
                 <DeleteTwoTone twoToneColor="#eb2f96" />
               </Popconfirm>
             </Typography.Link>
-         </span>
+          </span>
         );
       },
     },
@@ -120,18 +127,18 @@ const CustomerTable =()=>{
   const mergedColumns = columns.map((col) => col);
 
   return (
-      <Form form={form} component={false}>
-        <Table
-          rowKey={(record) => record.customerId}
-          bordered
-          dataSource={data}
-          columns={mergedColumns}
-          rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-          }}
-        />
-      </Form>
+    <Form form={form} component={false}>
+      <Table
+        rowKey={(record) => record.customerId}
+        bordered
+        dataSource={data}
+        columns={mergedColumns}
+        rowClassName="editable-row"
+        pagination={{
+          defaultPageSize: 5,
+        }}
+      />
+    </Form>
   );
-}
+};
 export default CustomerTable;

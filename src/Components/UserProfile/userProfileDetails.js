@@ -19,7 +19,15 @@ function UserProfileDetails() {
   }, []);
 
   return (
-    <Card title=" USER PROFILE" extra={<Link to="/updateProfile"> EDIT PROFILE <FaPen /></Link>}>
+    <Card
+      title=" USER PROFILE"
+      extra={
+        <Link to="/updateProfile">
+          {" "}
+          EDIT PROFILE <FaPen />
+        </Link>
+      }
+    >
       <div className="details">
         <span>
           <img
