@@ -38,12 +38,6 @@ const PRODUCTS = (event) => {
     event.preventDefault();
         navigate('/product');
 }
-// const BANNERS = (event) => {
-//     //Prevent page reload
-//     event.preventDefault();
-//         navigate('/banner');
-   
-// }
 // const ABOUTUS = (event) => {
 //     //Prevent page reload
 //     event.preventDefault();

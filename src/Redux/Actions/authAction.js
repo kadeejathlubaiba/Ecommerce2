@@ -1,8 +1,8 @@
 import { AUTH_SUCCESS, AUTH_FAILURE } from "./type";
-import setAuthToken from '../../Config/config';
+import setAuthToken from '../../Utils/Config/config';
 import { trackPromise} from 'react-promise-tracker';
 import axios from "axios";
-import serverData from '../../Config/constant'
+import serverData from '../../Utils/Config/constant'
  
 
 const baseUrl =  serverData.BASEURL;

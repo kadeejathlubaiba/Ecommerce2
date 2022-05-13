@@ -1,55 +1,54 @@
-
 import React, { useEffect } from "react";
 import { Form, Input, message, Button, Space, Card, Select } from "antd";
 import { useNavigate } from "react-router-dom";
-import { PostWithAuthToken } from "../../Config/api";
+import { PostWithAuthToken } from "../../Utils/Config/api";
 import store from "../../store";
 import { GetAdminDetails } from "../../Redux/Actions/authAction";
-import { Alert } from 'antd';
+import { Alert } from "antd";
 import { useDispatch } from "react-redux";
 
-
-function UpdateProfile() {
-  
+function UpdateProfileForm() {
   const mov = () => {
-    navigate('/profile');
-}
-const onReset = () => {
+    navigate("/profile");
+  };
+  const onReset = () => {
     form.resetFields();
-};
+  };
   let navigate = useNavigate();
   const [form] = Form.useForm();
   let Details = store.getState().auth.auth;
 
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetAdminDetails());
     if (localStorage.getItem("token")) {
-         console.log(Details);
-         form.setFieldsValue({
-           userId:Details.userId,
-           userName:Details.userName,
-           email:Details.email,
-           phoneNumber: Details.phoneNumber,
-           gender:Details.gender
-       });
+      form.setFieldsValue({
+        userId: Details.userId,
+        userName: Details.userName,
+        email: Details.email,
+        phoneNumber: Details.phoneNumber,
+        gender: Details.gender,
+      });
     } else {
       navigate("/");
     }
   }, [form]);
   const onFinish = (values) => {
-      let data = JSON.stringify(values)
+    let data = JSON.stringify(values);
     console.log(data);
-    PostWithAuthToken('users/update_users.php',data)
-      .then((res)=>{
-        console.log(res);
-        localStorage.setItem("userName",JSON.stringify(values.userName));
-
-        console.log(values);
-        var item= JSON.parse(localStorage.getItem('userName'));
-        
-      <Alert message="Profile updated successfully" description="Profile updates successfully" type="success" showIcon closable />
-      } );
+    PostWithAuthToken("users/update_users.php", data).then((res) => {
+      console.log(res);
+      localStorage.setItem("userName", JSON.stringify(values.userName));
+      var item = JSON.parse(localStorage.getItem("userName"));
+      navigate("/profile");  
+      <Alert
+        message="Profile updated successfully"
+        description="Profile updated successfully"
+        type="success"
+        showIcon
+        closable
+      />;
+    });
   };
   const onFinishFailed = () => {
     message.error("Submit failed!");
@@ -66,17 +65,17 @@ const onReset = () => {
 
   return (
     <div className="editForm">
-      <Card title='Update Profile'>
+      <Card title="Update Profile">
         <Form
           validateMessages={validateMessages}
           form={form}
           layout="vertical"
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete="off" >
-          <Form.Item
-            name="userId" >
-            <Input style={{"display":"none"}} />
+          autoComplete="off"
+        >
+          <Form.Item name="userId">
+            <Input style={{ display: "none" }} />
           </Form.Item>
           <Form.Item
             label="Name"
@@ -85,7 +84,8 @@ const onReset = () => {
               {
                 required: true,
               },
-            ]} >
+            ]}
+          >
             <Input placeholder="Enter Name" />
           </Form.Item>
           <Form.Item
@@ -93,13 +93,14 @@ const onReset = () => {
             label="Email"
             rules={[
               {
-                  required: true,
+                required: true,
                 type: "email",
               },
-            ]} >
+            ]}
+          >
             <Input placeholder="Enter Email" />
           </Form.Item>
-          
+
           <Form.Item
             name="phoneNumber"
             label="Phone Number"
@@ -122,20 +123,29 @@ const onReset = () => {
               },
             ]}
           >
-            <Select placeholder="Select Gender" >
+            <Select placeholder="Select Gender">
               <Select.Option value="Male">Male</Select.Option>
               <Select.Option value="Female">Female</Select.Option>
               <Select.Option value="Other">Other</Select.Option>
             </Select>
           </Form.Item>
-         
+
           <Form.Item>
-              <div id="butn">
+            <div id="butn">
               <Space>
-              <Button type="primary" htmlType="submit" > Update </Button>
-              <Button htmlType="button" onClick={onReset}> Reset </Button>
-             <Button type="primary" htmlType="button" onClick={mov}> Back </Button>
-            </Space>
+                <Button type="primary" htmlType="submit">
+                  {" "}
+                  Update{" "}
+                </Button>
+                <Button htmlType="button" onClick={onReset}>
+                  {" "}
+                  Reset{" "}
+                </Button>
+                <Button type="primary" htmlType="button" onClick={mov}>
+                  {" "}
+                  Back{" "}
+                </Button>
+              </Space>
             </div>
           </Form.Item>
         </Form>
@@ -144,4 +154,4 @@ const onReset = () => {
   );
 }
 
-export default UpdateProfile;
+export default UpdateProfileForm;

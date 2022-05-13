@@ -5,8 +5,8 @@ import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import './login.css';
-import '../../Config/config'
+import '../Components/Layout/login.css';
+import '../Utils/Config/config'
 
 const validationSchema = yup.object({
   email: yup
