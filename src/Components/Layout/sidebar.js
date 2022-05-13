@@ -11,7 +11,7 @@ const navigate = useNavigate();
 const DASHBOARD = (event) => {
             //Prevent page reload
             event.preventDefault();
-                navigate('/home');
+                navigate('/dashboard');
  }
  const ORDERS = (event) => {
     //Prevent page reload

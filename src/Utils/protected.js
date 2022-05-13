@@ -5,6 +5,7 @@ import store from "../store";
 
 const Protected = ({ children }) => {
 GetAdminDetails();
+console.log(store.getState().auth.isLoggedIn);
 let loginStatus = store.getState().auth.isLoggedIn;
  if (!loginStatus) {
  return <Navigate to="/" replace />;

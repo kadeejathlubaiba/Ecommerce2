@@ -31,8 +31,7 @@ root.render(
     <Routes>
       <Route index element={<App />} />
       <Route path="/" element={<Login />} />
-     <Route path="/home" element={<Protected><Home /></Protected>} />
-     <Route path="/dashboard" element={<Protected><Home /></Protected>} />
+     <Route path="/dashboard" element={<Home />} />
      <Route path="/category" element={<Protected><Category /></Protected>} />
      <Route path="/product" element={<Protected><Products /></Protected>} />
      <Route path="/order" element={<Protected><Orders /></Protected>} />

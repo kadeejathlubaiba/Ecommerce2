@@ -43,9 +43,8 @@ function Login() {
           localStorage.setItem('email',response.data.data.email);
           localStorage.setItem('gender',response.data.data.gender);
           localStorage.setItem('phoneNumber',response.data.data.phoneNumber);
-          localStorage.setItem("isAuthenticated", true);
           //console.log(response.data.data.userName);
-          navigate('/home');
+          navigate('/dashboard');
         }
         else{
           alert('Invalid Credentials Please try again');
