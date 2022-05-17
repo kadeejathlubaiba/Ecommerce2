@@ -8,8 +8,10 @@ import { message } from "antd";
 import { Modal, Button } from "antd";
 import { Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import LoadingSpinner from '../../Utils/Loader/loadingSpinner';
 
 export default function ChangePassword() {
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -38,7 +40,21 @@ export default function ChangePassword() {
 
       .matches(/[A-Z].*[A-Z]/, "must contain two uppercase characters")
       .matches(/[a-z].*[a-z]/, "must contain 2 lowercase characters")
-      .matches(/[!@#$%^&()-=+{};:,<.>]{0,2}/, "atmost 2 special characters"),
+      .test(
+        "atMost2SpecialCharacters",
+        "Atmost 2 special characters are allowed!",
+        function (value) {
+          return new Promise((resolve, reject) => {
+            const specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/gi;
+            const allFoundCharacters = value.match(specialChars);
+            if (allFoundCharacters.length > 2) {
+              resolve(false);
+            } else {
+              resolve(true);
+            }
+          });
+        }
+      ),
 
     newPassword: Yup.string("Confirm Password")
       .oneOf([Yup.ref("passwords"), null], "Passwords must match")
@@ -67,6 +83,7 @@ export default function ChangePassword() {
           onSubmit={(values) => {
             console.log("checking");
             setIsSubmitting(true);
+            setIsLoading(true);
             console.log(JSON.stringify(values, null, 2));
             axios
               .post(
@@ -79,17 +96,19 @@ export default function ChangePassword() {
                   message.success(response.data.message);
 
                   setIsSubmitting(false);
+                  setIsLoading(false);
                   navigate("/");
                 } else {
                   message.error(response.data.message);
 
                   setIsSubmitting(false);
+                  setIsLoading(false);
                 }
               })
               .catch((error) => {
                 message.error("Try again later");
-                //formik.resetForm()
                 setIsSubmitting(false);
+                setIsLoading(false);
               });
           }}
         >
@@ -113,6 +132,7 @@ export default function ChangePassword() {
                   onOk={handleOk}
                   onCancel={handleCancel}
                 >
+                  {isLoading ? <LoadingSpinner /> :"input-containers" }
                   <form onSubmit={handleSubmit} className="form-val">
                     <br />
                     <div className="input-containers">
@@ -188,16 +208,22 @@ export default function ChangePassword() {
                       </span>
                     </div>
                     <div className="button-container">
-                      <input
-                        type="submit"
-                        disabled={!isValid || isSubmitting}
-                        value="Submit"
-                      />
-                      <input
-                        type="reset"
-                        value="Reset"
+                      <Button
+                        className="btn-submit"
+                        type="primary"
+                        htmlType="submit"
+                        disabled={!isValid || isSubmitting || isLoading}
+
+                      >
+                        Submit
+                      </Button>
+                      <Button
+                        type="primary"
+                        htmlType="button"
                         onClick={(e) => resetForm()}
-                      />
+                      >
+                        Reset
+                      </Button>
                     </div>
                   </form>
                 </Modal>

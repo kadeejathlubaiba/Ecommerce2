@@ -36,7 +36,6 @@ const CustomerTable = () => {
       .then((response) => {
         console.log(response.data + "Deleted user Id =" + record.customerId);
         setRefresh(refresh + 1);
-        console.log(refresh);
       });
   };
   const columns = [

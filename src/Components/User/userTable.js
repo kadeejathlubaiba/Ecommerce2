@@ -1,7 +1,6 @@
 import {
   Table,
   Input,
-  Button,
   InputNumber,
   Popconfirm,
   Form,
@@ -45,7 +44,6 @@ const EditableCell = ({
   );
 };
 const UserTable = () => {
-  let navigate = useNavigate();
   const [form] = Form.useForm();
   const [data, setData] = useState(null);
   const [editingKey, setEditingKey] = useState("");
