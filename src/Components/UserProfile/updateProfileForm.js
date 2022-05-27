@@ -32,7 +32,7 @@ function UpdateProfileForm() {
     } else {
       navigate("/");
     }
-  }, [form]);
+  });
   const onFinish = (values) => {
     let data = JSON.stringify(values);
     console.log(data);

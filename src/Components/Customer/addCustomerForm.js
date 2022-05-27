@@ -2,8 +2,7 @@ import "../Layout/style.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import { Form, Input, message, Button, Space, Select } from "antd";
-import { Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+// import FileUpload from "./fileUpload";
 
 function Addcustomer() {
   let navigate = useNavigate();
@@ -12,6 +11,7 @@ function Addcustomer() {
   const mov = () => {
     navigate("/customer");
   };
+
   useEffect(() => {
     fetch(
       `http://localhost/ecommerce-backend/api/customer/get_customerid.php`,
@@ -33,7 +33,7 @@ function Addcustomer() {
             phoneNumber: result[0].phoneNumber,
             address: result[0].address,
             gender: result[0].gender,
-            //profilePicture:result.profilePicture
+            profilePicture: result[0].profilePicture,
           });
         },
         (error) => {
@@ -42,23 +42,6 @@ function Addcustomer() {
       );
   }, []);
 
-  // const props = {
-  //     name: 'file',
-  //     action: 'http://localhost/ecommerce-backend/api/customer/create_customer.php',
-  //     headers: {
-  //       authorization: 'authorization-text',
-  //     },
-  //     onChange(info) {
-  //       if (info.file.status !== 'uploading') {
-  //         console.log(info.file, info.fileList);
-  //       }
-  //       if (info.file.status === 'done') {
-  //         message.success(`${info.file.name} file uploaded successfully`);
-  //       } else if (info.file.status === 'error') {
-  //         message.error(`${info.file.name} file upload failed.`);
-  //       }
-  //     },
-  //   };
   const onFinish = (values) => {
     console.log(values.customerId);
     if (values.customerId) {
@@ -117,6 +100,7 @@ function Addcustomer() {
     form.resetFields();
   };
   return (
+    
     <Form
       form={form}
       layout="vertical"
@@ -203,14 +187,8 @@ function Addcustomer() {
       <Form.Item name="address" label="address">
         <Input.TextArea placeholder="address" />
       </Form.Item>
-      {/* <Form.Item
-                            name="profilePicture"
-                            label="profilePicture"
-                        >
-                        <Upload {...props}>
-                        <Button icon={<UploadOutlined />}>Click to Upload</Button>
-                        </Upload>
-        </Form.Item> */}
+      {/* <FileUpload /> */}
+      {/* <Form.Item name="profilePicture" label="profilePicture"></Form.Item> */}
 
       <Form.Item>
         <br />

@@ -12,7 +12,7 @@ export const GetAdminDetails = () => async (dispatch) => {
   }
   try {
     const res = await trackPromise(axios.post(baseUrl + "validate_token.php"));
-    console.log(res);
+    //console.log(res);
     dispatch({
       type: AUTH_SUCCESS,
       payload: res.data,

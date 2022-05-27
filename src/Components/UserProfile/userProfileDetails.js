@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { GetAdminDetails } from "../../Redux/Actions/authAction";
 import "./profile.css";
 import { FaPen } from "react-icons/fa";
-import ChangePassword from "../../Components/UserProfile/changePassword";
+import ChangePassword from "./changePassword";
 import { useDispatch, useSelector } from "react-redux";
 
 function UserProfileDetails() {
@@ -16,7 +16,7 @@ function UserProfileDetails() {
     //   if (localStorage.getItem("token")) {
     //     dispatch(GetAdminDetails());
     //   }
-  }, []);
+  });
 
   return (
     <Card
